@@ -11,19 +11,18 @@ export function Footer() {
             anúncios. Não precisa de cartão de crédito.
           </p>
         </div>
-        <NavLink to={'/cadastro'}>
           <a
             href="cadastro.html"
-            class="ms-auto mx-4 justify-content-center align-items-center"
-          >
+            class="ms-auto mx-4 justify-content-center align-items-center">
+        <NavLink to={'/cadastro'}>
             <button class="player-btn ms-auto mx-4 justify-content-center align-items-center">
               <span class="player-btn-title align-items-center">
                 Inscreva-se grátis
               </span>
             </button>
+        </NavLink>
           </a>
 
-        </NavLink>
       </footer>
     </div>
   );

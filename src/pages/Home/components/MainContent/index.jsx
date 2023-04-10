@@ -1,4 +1,5 @@
 import { Play } from 'phosphor-react';
+import { NavLink } from 'react-router-dom';
 import cardImg from '../../../../assets/images/card-img.jpg'
 import cardImg2 from '../../../../assets/images/card2-img.jpg'
 import cardImg3 from '../../../../assets/images/card3-img.jpg'
@@ -67,9 +68,11 @@ export function MainContent() {
                 </div>
 
                 <div class="btn-play">
-                  <button class="d-flex justify-content-center align-items-center">
-                    <Play size={22} />
-                  </button>
+                  <NavLink to="/playlist">
+                    <button class="d-flex justify-content-center align-items-center">
+                      <Play size={22} />
+                    </button>
+                  </NavLink>
                 </div>
               </div>
             </div>
