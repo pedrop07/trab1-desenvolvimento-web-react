@@ -1,12 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../../../../assets/images/logo.svg'
 import globo from '../../../../assets/images/bt.svg'
+import { Logo } from '../../../../components/Logo';
 
 export function Aside() {
   return (
     <nav class=" nav-bar d-flex flex-column">
       <div class="nav-bar-header d-flex ps-4 pt-4 pb-4">
-        <img class="logo" src={logo} />
+        <Logo />
       </div>
 
       <ul class="navbar-nav">

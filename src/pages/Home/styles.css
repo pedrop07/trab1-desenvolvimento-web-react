@@ -337,6 +337,7 @@ button{
 }
 
 .main .list .card .card-title{
+    margin-bottom: 8px;
     font-size: 14px;
     line-height: 20px;
     font-weight: 700;
@@ -345,7 +346,6 @@ button{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin: 0;
 }
 
 .main .list .card .card-text{

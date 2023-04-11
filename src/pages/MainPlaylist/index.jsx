@@ -15,7 +15,7 @@ export function MainPlaylist() {
     <div class="root">
       <Aside />
       <Header />
-      <Playlist/>
+      <Playlist />
       <Footer />
     </div>
   );

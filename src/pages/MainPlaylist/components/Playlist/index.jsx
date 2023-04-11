@@ -1,83 +1,93 @@
 import { Pause, Play } from 'phosphor-react';
-import cardImg from '../../../../assets/images/card-img.jpg'
 import playPiano from '../../../../assets/audio/piano_1.mp3'
-import {playAudio , pauseAudio} from '../../Scripts/player.js'
+import { useSearchParams } from 'react-router-dom';
+import { playlists } from '../../../Home/components/MainContent';
+import './playlist.css'
 
-export function Playlist(){
-    return(
-      <div id="main " class="main d-flex flex-column">
-        
-        <div class="margin-top"></div>
-  
-          <div class="main-container d-flex align-items-center mb-3">
-            <div class="card">
-              <img src={cardImg} class="card-img" />
-              <div class="btn-play" id='btn-play'>
-                    <button onClick={playAudio} class="d-flex justify-content-center align-items-center">
-                      <Play size={22} />
-                    </button>
-              </div>
+export function Playlist() {
+  function playAudio() {
+    let x = document.getElementById("myAudio");
+    x.play();
+    document.getElementById('btn-play').style.display = 'none'
+    document.getElementById('btn-pause').style.display = 'block'
+  }
 
-              <div class="btn-pause" id='btn-pause'>
-                    <button onClick={pauseAudio} class="d-flex justify-content-center align-items-center">
-                      <Pause size={22} />
-                    </button>
-              </div>
+  function pauseAudio() {
+    let x = document.getElementById("myAudio");
+    x.pause();
+    document.getElementById('btn-pause').style.display = 'none'
+    document.getElementById('btn-play').style.display = 'block'
+  }
+
+  const [searchParams] = useSearchParams()
+
+  const playlistId = searchParams.get('id')
+  const selectedPlaylist = playlists.find(({ id }) => id === playlistId)
+
+  return (
+    <div id="main " class="main d-flex flex-column">
+      <div id="grid-container">
+        <div class="main-container d-flex align-items-center mb-3">
+          <div class="card">
+            <img src={selectedPlaylist.img} class="card-img" />
+            <div class="btn-play" id='btn-play'>
+              <button onClick={playAudio} class="d-flex justify-content-center align-items-center">
+                <Play size={22} />
+              </button>
             </div>
-            
-            <div class = "ms-4 mb-auto">
-              <div class= "tittle">
-                <h6>Playlist</h6>
-                <h1>Peaceful Piano</h1>
-              </div>
-              <audio id="myAudio">
-                <source src={playPiano} type="audio/mpeg"/>
-                Seu navegador não possui suporte ao elemento audio
-              </audio>
-            </div>
 
+            <div class="btn-pause" id='btn-pause'>
+              <button onClick={pauseAudio} class="d-flex justify-content-center align-items-center">
+                <Pause size={22} />
+              </button>
+            </div>
           </div>
-  
-          
-            <table class="table-dark">
-              <thead>
+
+          <div class="ms-4 mb-auto">
+            <div class="tittle">
+              <h6>Playlist</h6>
+              <h1>{selectedPlaylist.title}</h1>
+            </div>
+            <audio id="myAudio">
+              <source src={playPiano} type="audio/mpeg" />
+              Seu navegador não possui suporte ao elemento audio
+            </audio>
+          </div>
+
+        </div>
+
+        <table class="table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Título</th>
+              <th scope="col">Álbum</th>
+              <th scope="col">Duração</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th colspan="4">
+                <hr></hr>
+              </th>
+            </tr>
+
+            {selectedPlaylist.musics.map(({ title, album, duration }, index) => {
+              return (
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Álbum</th>
-                    <th scope="col">Duração</th>
+                  <th scope="row">{index + 1}</th>
+                  <td>{title}</td>
+                  <td>{album}</td>
+                  <td>{duration}</td>
                 </tr>
-              </thead>
-              <tbody>
-                <tr>
-                    <th colspan="4">
-                      <hr></hr>
-                    </th>
-                </tr>
-                
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>2:34</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>1:43</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td >Larry the Bird</td>
-                    <td >Test</td>
-                    <td>3:34</td>
-                </tr>
-              </tbody>
-            </table>
-          
-          
+              )
+            })}
+
+          </tbody>
+        </table>
       </div>
-    );
+
+    </div>
+  );
 }
-    
+
