@@ -72,14 +72,43 @@ export function Playlist() {
               </th>
             </tr>
 
-            {selectedPlaylist.musics.map(({ title, album, duration }, index) => {
+            {selectedPlaylist.musics.map(({ title, album, duration, src }, index) => {
+              function playAudio() {
+                let x = document.getElementById(title);
+                x.play();
+                document.getElementById(`btn-play${index}`).style.display = 'none'
+                document.getElementById(`btn-pause${index}`).style.display = 'flex'
+              }
+
+              function pauseAudio() {
+                let x = document.getElementById(title);
+                x.pause();
+                document.getElementById(`btn-pause${index}`).style.display = 'none'
+                document.getElementById(`btn-play${index}`).style.display = 'flex'
+              }
+
               return (
-                <tr>
-                  <th scope="row">{index + 1}</th>
-                  <td>{title}</td>
-                  <td>{album}</td>
-                  <td>{duration}</td>
-                </tr>
+                <>
+                  <audio id={title}>
+                    <source src={src} type="audio/mpeg" />
+                    Seu navegador não possui suporte ao elemento audio
+                  </audio>
+
+                  <tr>
+                    <th scope="row">{index + 1}</th>
+                    <th>
+                      <div className='start-music' id={`btn-play${index}`} onClick={playAudio}>
+                        <Play />
+                      </div>
+                      <div className='pause-music' id={`btn-pause${index}`} onClick={pauseAudio}>
+                        <Pause />
+                      </div>
+                    </th>
+                    <td>{title}</td>
+                    <td>{album}</td>
+                    <td>{duration}</td>
+                  </tr>
+                </>
               )
             })}
 

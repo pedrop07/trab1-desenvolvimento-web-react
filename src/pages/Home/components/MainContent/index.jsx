@@ -6,6 +6,9 @@ import cardImg3 from '../../../../assets/images/card3-img.jpg'
 import cardImg4 from '../../../../assets/images/card4-img.jpg'
 import cardImg5 from '../../../../assets/images/card5-img.jpg'
 import cardImg6 from '../../../../assets/images/card6-img.jpg'
+import music1 from '../../../../assets/audio/piano_1.mp3'
+import music2 from '../../../../assets/audio/piano_2.mp3'
+import music3 from '../../../../assets/audio/piano_3.mp3'
 
 export const playlists = [
   {
@@ -15,19 +18,22 @@ export const playlists = [
     img: cardImg,
     musics: [
       {
-        title: 'John Doe',
-        album: 'Canada',
-        duration: '2:34'
+        title: 'Piano 1',
+        album: 'Piano',
+        duration: '2:34',
+        src: music1
       },
       {
-        title: 'Lucas',
-        album: 'Brasil',
-        duration: '2:50'
+        title: 'Piano 2',
+        album: 'Piano',
+        duration: '2:50',
+        src: music2
       },
       {
-        title: 'Rio de Janeiro',
-        album: 'BRASIL',
-        duration: '3:22'
+        title: 'Piano 3',
+        album: 'Piano',
+        duration: '3:22',
+        src: music3
       }
     ]
   },

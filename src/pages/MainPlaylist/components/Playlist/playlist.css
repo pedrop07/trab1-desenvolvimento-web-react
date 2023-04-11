@@ -1,6 +1,23 @@
-#grid-container{
+#grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
 
   margin-top: 20px;
+}
+
+.pause-music, .start-music {
+  cursor: pointer;
+  background-color: #1db954;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.pause-music {
+  display: none;
 }
