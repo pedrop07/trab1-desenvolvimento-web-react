@@ -12,12 +12,10 @@ button{
 }
 
 ::-webkit-scrollbar{
-    width: 16px;
+    width: 0px;
 }
 
-::-webkit-scrollbar-thumb{
-    background-color: rgba(0, 0, 100%, .3);
-}
+
 
 .nav-bar .navbar-nav .nav-item a:hover, .root-list-item:hover{
     opacity: 1;
@@ -55,7 +53,6 @@ button{
 .main{
     grid-area: main-view;
     flex:1;
-    height: 92%;
     min-height: 0;
     overflow-x: scroll;
     margin-top: 60px;
@@ -372,11 +369,52 @@ button{
     opacity: 0;
 }
 
+
+.main .card .btn-play{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    opacity: 1;
+}
+
+.main .card .btn-pause{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    opacity: 1;
+    display: none;
+}
+
 .main .list .card:hover > .btn-play{
     opacity: 1;
 }
 
+
 .main .list .card .btn-play button{
+    color: #fff;
+    background-color: #1db954;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 12px;
+
+}
+
+.main .card .btn-play button{
+    color: #fff;
+    background-color: #1db954;
+    border-radius: 50%;
+    border: none;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 12px;
+
+}
+
+.main .card .btn-pause button{
     color: #fff;
     background-color: #1db954;
     border-radius: 50%;
