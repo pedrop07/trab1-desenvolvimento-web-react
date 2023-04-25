@@ -1,24 +1,25 @@
-import { NavLink } from 'react-router-dom';
-import { Logo } from '../../../../components/Logo';
+import { NavLink } from 'react-router-dom'
+import { Logo } from '../../../../components/Logo'
 export function HeaderFaq() {
-    return (
-        <div class="wrapper">
-            <header class="header">
-                <Logo />
+  return (
+    <div className="wrapper">
+      <header className="header">
+        <Logo />
 
+        <nav className="nav">
+          <NavLink to="/">
+            <a href="" className="nav-link">
+              Ínicio
+            </a>
+          </NavLink>
 
-                <nav class="nav">
-
-                    <NavLink to='/'>
-                        <a href="" class="nav-link">Ínicio</a>
-                    </NavLink>
-
-                    <NavLink to='/cadastro'>
-                        <a href="" class="nav-link">Cadastro</a>
-                    </NavLink>
-                </nav>
-            </header>
-        </div>
-
-    )
+          <NavLink to="/cadastro">
+            <a href="" className="nav-link">
+              Cadastro
+            </a>
+          </NavLink>
+        </nav>
+      </header>
+    </div>
+  )
 }

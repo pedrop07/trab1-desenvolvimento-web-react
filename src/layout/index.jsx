@@ -1,10 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
+import { ContextProvider } from '../contexts/ContextProvider'
 
-export function DefaultLayout(){
-    return(
-        <div>
-            {/* <Header /> */}
-            <Outlet />
-        </div>
-    )
+export function DefaultLayout() {
+  return (
+    <ContextProvider>
+      {/* <Header /> */}
+      <Outlet />
+    </ContextProvider>
+  )
 }

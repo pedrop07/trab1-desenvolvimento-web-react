@@ -1,3 +1,160 @@
 {
-    "users": []
+  "spotify_playlists": [
+    {
+      "id": "playlist-1",
+      "title": "Piano",
+      "description": "Relaxe com piano",
+      "img": "/src/assets/images/card-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    },
+    {
+      "id": "playlist-2",
+      "title": "Manhã Relax",
+      "description": "Para começar bem o seu dia",
+      "img": "/src/assets/images/card2-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    },
+    {
+      "id": "playlist-3",
+      "title": "Faxina Nostalgia",
+      "description": "Grandes sucessos dos anos 80 para começar seu dia",
+      "img": "/src/assets/images/card3-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    },
+    {
+      "id": "playlist-4",
+      "title": "Retrôvisor",
+      "description": "Grandes sucessos para embalar a sua viagem",
+      "img": "/src/assets/images/card4-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    },
+    {
+      "id": "playlist-5",
+      "title": "Rádio de Frank Ocean",
+      "description": "De Spotify",
+      "img": "/src/assets/images/card5-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    },
+    {
+      "id": "playlist-6",
+      "title": "The Wall",
+      "description": "1977. Álbum",
+      "img": "/src/assets/images/card6-img.jpg",
+      "musics": [
+        {
+          "title": "Piano 1",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_1.mp3"
+        },
+        {
+          "title": "Piano 2",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_2.mp3"
+        },
+        {
+          "title": "Piano 3",
+          "album": "Piano",
+          "duration": "2:34",
+          "path": "/src/assets/audio/piano_3.mp3"
+        }
+      ]
+    }
+  ]
 }
