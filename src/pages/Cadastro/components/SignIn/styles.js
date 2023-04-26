@@ -1,12 +1,8 @@
 import styled from 'styled-components'
 
-export const LoginContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
+export const FormContainer = styled.div`
+  max-width: fit-content;
+  margin: 0 auto;
 `
 
 export const Form = styled.form`

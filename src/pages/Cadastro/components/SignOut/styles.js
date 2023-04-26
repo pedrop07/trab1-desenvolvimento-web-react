@@ -1,18 +1,12 @@
 import styled from 'styled-components'
 
-export const RegisterContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 2rem;
+export const FormContainer = styled.div`
+  max-width: fit-content;
+  margin: 0 auto;
 `
 
 export const Form = styled.form`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   gap: 1rem;
 
@@ -40,16 +34,8 @@ export const Form = styled.form`
   }
 `
 
-export const CheckboxContainer = styled.div`
-  width: 100%;
-  padding: 0 20px;
-  color: #fff;
-
-  input {
-    margin-right: 1rem;
-  }
-
-  label {
-    cursor: pointer;
-  }
+export const InputContainer = styled.div`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
 `

@@ -1,11 +1,8 @@
-import { NavLink } from 'react-router-dom'
-import { Logo } from '../../components/Logo'
-import { CheckboxContainer, Form, LoginContainer } from './styles'
+import { CheckboxContainer, Form, FormContainer } from './styles'
 
-export function Login() {
+export function SignIn() {
   return (
-    <LoginContainer>
-      <Logo />
+    <FormContainer>
       <Form>
         <input type="text" placeholder="Usuário" />
         <input type="password" placeholder="Senha" />
@@ -17,7 +14,6 @@ export function Login() {
         </CheckboxContainer>
         <button>Logar</button>
       </Form>
-      <NavLink to={'/register'}>Cadastrar-se</NavLink>
-    </LoginContainer>
+    </FormContainer>
   )
 }
