@@ -1,19 +1,19 @@
 import {
-  BackgroundImage,
   StyledLogo,
   RegisterContainer,
   TabContainer,
   TabButton,
   ContentContainer,
 } from './styles'
-import bgImg from '../../assets/images/bg-img-login.jpg'
-import logo from '../../assets/images/logo.svg'
-import { useState } from 'react'
+import logo from '../../assets/images/black-logo.png'
+import { useState, useEffect } from 'react'
 import { SignOut } from './components/SignOut'
 import { SignIn } from './components/SignIn'
-import { NavLink } from 'react-router-dom'
 
 export function Cadastro() {
+  useEffect(() => {
+    document.title = 'Spotify | Cadastro'
+  }, [])
   const [activeForm, setActiveForm] = useState('signIn')
 
   function renderForm() {
@@ -26,12 +26,10 @@ export function Cadastro() {
 
   return (
     <RegisterContainer>
-      <BackgroundImage src={bgImg} alt="" />
-
       <ContentContainer>
-        <NavLink to={'/'}>
-          <StyledLogo src={logo} alt="logo" width={'100%'} height={'70px'} />
-        </NavLink>
+        <StyledLogo to={'/'}>
+          <img src={logo} alt="logo" />
+        </StyledLogo>
 
         <TabContainer>
           <TabButton
