@@ -21,8 +21,10 @@ export function ContextProvider({ children }) {
 
     fetchData()
 
-    if (localStorage.getItem('user')) {
-      setLoggedUser(localStorage.getItem('user'))
+    const user = localStorage.getItem('user')
+
+    if (user) {
+      setLoggedUser(JSON.parse(user))
     }
   }, [])
 
