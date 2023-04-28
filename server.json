@@ -156,5 +156,14 @@
         }
       ]
     }
+  ],
+  "user": [
+    {
+      "name": "pedro",
+      "email": "pedro@gmail.com",
+      "date_of_birth": "07/07/1977",
+      "password": "123",
+      "id": 1
+    }
   ]
 }

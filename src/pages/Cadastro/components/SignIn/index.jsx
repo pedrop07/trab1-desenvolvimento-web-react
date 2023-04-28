@@ -1,35 +1,91 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Form, FormContainer, Input, SubmitButton } from './styles'
 import { Error } from '../../styles'
 import { WarningCircle } from 'phosphor-react'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import { Context } from '../../../../contexts/ContextProvider'
 
 export function SignIn() {
-  const [username, setUsername] = useState('')
+  const navigate = useNavigate()
+  const { setLoggedUser } = useContext(Context)
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState({
-    username: '',
+    email: '',
     password: '',
   })
 
-  function handleSubmit(event) {
-    event.preventDefault()
+  function validate() {
     setError({
-      username: '',
+      email: '',
+      dateOfBirth: '',
       password: '',
+      confirmPassword: '',
     })
+    let haveError = false
 
-    if (!username) {
+    if (!email) {
       setError((prevState) => ({
         ...prevState,
-        username: 'Não pode ser vazio',
+        email: 'Insira seu E-mail',
       }))
+      haveError = true
     }
 
     if (!password) {
       setError((prevState) => ({
         ...prevState,
-        password: 'Não pode ser vazio',
+        password: 'Insira sua senha',
       }))
+      haveError = true
+    }
+
+    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+
+    if (!regexEmail.test(email) && email) {
+      setError((prevState) => ({
+        ...prevState,
+        email: 'E-mail inválido.',
+      }))
+      haveError = true
+    }
+
+    return haveError
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault()
+
+    if (!validate()) {
+      async function userSignIn() {
+        const response = await axios.get(
+          `http://localhost:3000/user?email=${email}`,
+        )
+
+        if (response.data.length === 0) {
+          setError({
+            email: 'E-mail ou senha incorretos',
+            password: 'E-mail ou senha incorretos',
+          })
+        } else {
+          const user = response.data[0]
+          if (user.password !== password) {
+            setError((prevState) => ({
+              ...prevState,
+              password: 'Senha incorreta.',
+            }))
+          } else {
+            localStorage.setItem('user', JSON.stringify(user))
+            setLoggedUser(user)
+            toast.success('Login realizado')
+            navigate('/')
+          }
+        }
+      }
+
+      userSignIn()
     }
   }
 
@@ -38,15 +94,15 @@ export function SignIn() {
       <Form onSubmit={handleSubmit}>
         <div>
           <Input
-            type="text"
-            placeholder="Usuário"
-            onChange={(e) => setUsername(e.target.value)}
-            error={!!error.username}
+            type="email"
+            placeholder="E-mail"
+            onChange={(e) => setEmail(e.target.value)}
+            error={!!error.email}
           />
-          {error.username && (
+          {error.email && (
             <Error>
               <WarningCircle size={20} weight="fill" />
-              <span>{error.username}</span>
+              <span>{error.email}</span>
             </Error>
           )}
         </div>

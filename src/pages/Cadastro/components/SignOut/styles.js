@@ -1,3 +1,4 @@
+import { IMaskInput } from 'react-imask'
 import styled from 'styled-components'
 
 export const FormContainer = styled.div`
@@ -6,6 +7,17 @@ export const FormContainer = styled.div`
 `
 
 export const Input = styled.input`
+  width: 100%;
+  outline: none;
+  padding: 6px 12px;
+  appearance: none;
+  border: 1px solid ${({ error }) => (error ? '#d31225' : '#878787')};
+  font-size: 1rem;
+  border-radius: 4px;
+  color: #000;
+`
+
+export const DateOfBirthInput = styled(IMaskInput)`
   width: 100%;
   outline: none;
   padding: 6px 12px;

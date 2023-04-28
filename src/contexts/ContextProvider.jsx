@@ -5,6 +5,7 @@ export const Context = createContext({})
 
 export function ContextProvider({ children }) {
   const [spotifyPlaylist, setSpotifyPlaylist] = useState([])
+  const [loggedUser, setLoggedUser] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -19,12 +20,18 @@ export function ContextProvider({ children }) {
     }
 
     fetchData()
+
+    if (localStorage.getItem('user')) {
+      setLoggedUser(localStorage.getItem('user'))
+    }
   }, [])
 
   return (
     <Context.Provider
       value={{
         spotifyPlaylist,
+        setLoggedUser,
+        loggedUser,
       }}
     >
       {children}

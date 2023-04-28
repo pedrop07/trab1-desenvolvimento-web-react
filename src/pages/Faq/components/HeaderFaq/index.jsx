@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { Logo } from '../../../../components/Logo'
+import { Context } from '../../../../contexts/ContextProvider'
+import { useContext } from 'react'
 export function HeaderFaq() {
+  const { loggedUser } = useContext(Context)
+
   return (
     <div className="wrapper">
       <header className="header">
@@ -13,11 +17,13 @@ export function HeaderFaq() {
             </a>
           </NavLink>
 
-          <NavLink to="/cadastro">
-            <a href="" className="nav-link">
-              Cadastro
-            </a>
-          </NavLink>
+          {!loggedUser && (
+            <NavLink to="/cadastro">
+              <a href="" className="nav-link">
+                Cadastro
+              </a>
+            </NavLink>
+          )}
         </nav>
       </header>
     </div>
