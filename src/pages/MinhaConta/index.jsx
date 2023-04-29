@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 import { Context } from '../../contexts/ContextProvider'
 import { Navigate } from 'react-router-dom'
-import { Header } from './components/Header'
 import { UserProfile } from './components/UserProfile'
 import { MinhaContaContainer } from './styles'
+import { Nav } from './components/Nav'
 
 export function MinhaConta() {
   const { loggedUser } = useContext(Context)
@@ -12,7 +12,7 @@ export function MinhaConta() {
     <>
       {loggedUser ? (
         <MinhaContaContainer>
-          <Header>Minha conta</Header>
+          <Nav />
           <UserProfile />
         </MinhaContaContainer>
       ) : (

@@ -148,11 +148,15 @@ export function SignOut({ setActiveForm }) {
         if (response.data.length) {
           toast.error('Esse e-mail já está vinculado a uma conta.')
         } else {
+          const age =
+            new Date().getFullYear() - new Date(dateOfBirth).getFullYear()
+
           axios.post(`http://localhost:3000/user`, {
             name,
             email,
-            date_of_birth: dateOfBirth,
+            date_of_birth: new Date(dateOfBirth),
             password,
+            age,
           })
 
           toast.success('Usuário criado com sucesso !')

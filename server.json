@@ -159,10 +159,11 @@
   ],
   "user": [
     {
-      "name": "pedro",
-      "email": "pedro@gmail.com",
-      "date_of_birth": "07/07/1977",
+      "name": "lucas alberto",
+      "email": "lucas@gmail.com",
+      "date_of_birth": "2000-10-02T03:00:00.000Z",
       "password": "123",
+      "age": 23,
       "id": 1
     }
   ]
