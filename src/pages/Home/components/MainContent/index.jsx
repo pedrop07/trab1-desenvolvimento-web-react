@@ -16,7 +16,7 @@ export function MainContent() {
         {spotifyPlaylist.map((card) => {
           return (
             <div key={card.id} className="col-12 col-md-3 col-lg-2">
-              <NavLink to={`/playlist/${card.id}`}>
+              <NavLink to={`/playlist-spotify/${card.id}`}>
                 <div className="card">
                   <div className="card-body p-0">
                     <a href="">

@@ -5,7 +5,7 @@ import { Header } from '../Home/components/Header'
 import { Playlist } from './components/Playlist'
 import '../Home/styles.css'
 
-export function MainPlaylist() {
+export function SpotifyPlaylist() {
   useEffect(() => {
     document.title = 'Spotify - Playlist'
   }, [])
