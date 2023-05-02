@@ -10,6 +10,7 @@ export function Header() {
   function handleLogout() {
     setLoggedUser()
     localStorage.removeItem('user')
+    localStorage.removeItem('playlists')
   }
 
   return (
@@ -25,7 +26,7 @@ export function Header() {
                 Olá, <span>{loggedUser.name}</span>
               </div>
               <div>
-                <StyledLink to={'minha-conta'}>MINHA CONTA</StyledLink>
+                <StyledLink to={'/minha-conta'}>MINHA CONTA</StyledLink>
                 <span>|</span>
                 <LogoutButton onClick={handleLogout}>Sair</LogoutButton>
               </div>

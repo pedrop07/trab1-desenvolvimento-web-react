@@ -159,12 +159,56 @@
   ],
   "user": [
     {
-      "name": "lucas alberto",
+      "name": "lucas augusto",
       "email": "lucas@gmail.com",
       "date_of_birth": "2000-10-02T03:00:00.000Z",
       "password": "123",
       "age": 23,
       "id": 1
+    }
+  ],
+  "playlists": [
+    {
+      "title": "teste",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 1
+    },
+    {
+      "title": "2",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 2
+    },
+    {
+      "title": "3",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 3
+    },
+    {
+      "title": "4",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 4
+    },
+    {
+      "title": "5",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 5
+    },
+    {
+      "title": "6",
+      "musics": [],
+      "user_id": 1,
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
+      "id": 6
     }
   ]
 }

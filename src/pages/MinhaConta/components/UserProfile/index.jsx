@@ -16,8 +16,9 @@ import { Context } from '../../../../contexts/ContextProvider'
 import { Cake, EnvelopeSimple, Gear, Pencil, User, X } from 'phosphor-react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { UserPlaylists } from '../UserPlaylists'
 
-export function UserProfile() {
+export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
   const { loggedUser, setLoggedUser } = useContext(Context)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editedName, setEditedName] = useState(loggedUser.name)
@@ -107,6 +108,11 @@ export function UserProfile() {
           <Pencil size={32} color="#fff" />
         </UserEdit>
       </UserInfo>
+
+      <UserPlaylists
+        openPlaylistModal={openPlaylistModal}
+        setOpenPlaylistModal={setOpenPlaylistModal}
+      />
       {isModalOpen && (
         <ModalContainer>
           <Modal>

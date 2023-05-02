@@ -77,8 +77,13 @@ export function SignIn() {
               password: 'Senha incorreta.',
             }))
           } else {
+            const playlists = await axios.get(
+              `http://localhost:3000/playlists?user_id=${user.id}`,
+            )
+
+            localStorage.setItem('playlists', JSON.stringify(playlists.data))
             localStorage.setItem('user', JSON.stringify(user))
-            setLoggedUser(user)
+            setLoggedUser({ ...user, playlists: playlists.data })
             toast.success('Login realizado')
             navigate('/')
           }

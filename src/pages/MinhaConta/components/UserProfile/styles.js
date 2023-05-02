@@ -4,6 +4,9 @@ export const UserProfileContainer = styled.main`
   border-radius: 8px;
   width: 100%;
   background-color: #121212;
+
+  display: flex;
+  flex-direction: column;
 `
 
 export const UserInfo = styled.div`
