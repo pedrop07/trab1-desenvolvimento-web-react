@@ -36,7 +36,7 @@ export const CreatePlaylistButton = styled.button`
 export const PlaylistsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1rem;
 `
 
@@ -60,5 +60,26 @@ export const PlaylistCard = styled.div`
 
   &:hover {
     background: #303030;
+  }
+`
+
+export const SaveButton = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    all: unset;
+    cursor: pointer;
+    background: #fff;
+    color: #121212;
+    font-weight: 600;
+    border-radius: 500px;
+    max-width: fit-content;
+    padding: 6px 10px;
+
+    &:hover {
+      background-color: #ffffffc9;
+    }
   }
 `

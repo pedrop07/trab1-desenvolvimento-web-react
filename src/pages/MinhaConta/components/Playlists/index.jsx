@@ -1,25 +1,20 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
   CreatePlaylistButton,
   EmptyPlaylists,
   PlaylistCard,
   PlaylistsContainer,
+  SaveButton,
   UserPlaylistsContainer,
 } from './styles'
 import { Context } from '../../../../contexts/ContextProvider'
-import { PlusCircle, X } from 'phosphor-react'
-import {
-  Modal,
-  ModalContainer,
-  ModalContent,
-  ModalHeader,
-  SaveButton,
-} from '../UserProfile/styles'
+import { PlusCircle } from 'phosphor-react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
+import { Modal } from '../../../../components/Modal'
 
-export function UserPlaylists({ setOpenPlaylistModal, openPlaylistModal }) {
+export function Playlists({ setOpenPlaylistModal, openPlaylistModal }) {
   const { loggedUser, setLoggedUser } = useContext(Context)
   const [playlistName, setPlaylistName] = useState('')
 
@@ -71,17 +66,23 @@ export function UserPlaylists({ setOpenPlaylistModal, openPlaylistModal }) {
       <PlaylistsContainer>
         {loggedUser.playlists.map(({ id, title, img }) => {
           return (
-            <PlaylistCard key={id}>
-              <NavLink to={`/user-playlist/${id}`}>
+            <NavLink key={id} to={`/user-playlist/${id}`}>
+              <PlaylistCard>
                 <img src={img} alt="exemplo" />
                 <h5>{title}</h5>
-              </NavLink>
-            </PlaylistCard>
+              </PlaylistCard>
+            </NavLink>
           )
         })}
       </PlaylistsContainer>
     )
   }
+
+  useEffect(() => {
+    if (!openPlaylistModal) {
+      setPlaylistName('')
+    }
+  }, [openPlaylistModal])
 
   return (
     <UserPlaylistsContainer>
@@ -96,32 +97,20 @@ export function UserPlaylists({ setOpenPlaylistModal, openPlaylistModal }) {
       ) : (
         renderPlaylists()
       )}
-      {openPlaylistModal && (
-        <ModalContainer>
-          <Modal>
-            <ModalHeader>
-              Crie a sua playlist
-              <button onClick={() => setOpenPlaylistModal(false)}>
-                <X size={25} />
-              </button>
-            </ModalHeader>
-            <ModalContent>
-              <form onSubmit={handleAddPlaylist}>
-                <label htmlFor="name">Nome</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={playlistName}
-                  onChange={(event) => setPlaylistName(event.target.value)}
-                />
-                <SaveButton>
-                  <button>Criar</button>
-                </SaveButton>
-              </form>
-            </ModalContent>
-          </Modal>
-        </ModalContainer>
-      )}
+      <Modal open={openPlaylistModal} setOpen={setOpenPlaylistModal}>
+        <form onSubmit={handleAddPlaylist}>
+          <label htmlFor="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            value={playlistName}
+            onChange={(event) => setPlaylistName(event.target.value)}
+          />
+          <SaveButton>
+            <button>Criar</button>
+          </SaveButton>
+        </form>
+      </Modal>
     </UserPlaylistsContainer>
   )
 }

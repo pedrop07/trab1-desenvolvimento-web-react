@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const MinhaContaContainer = styled.div`
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   padding: 8px;
   background: #000;
 

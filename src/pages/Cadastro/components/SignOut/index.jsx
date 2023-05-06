@@ -10,6 +10,7 @@ import { WarningCircle } from 'phosphor-react'
 import { Error } from '../../styles'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
+import { verifyExistUser } from '../../../../util/verifyExistUser'
 
 export function SignOut({ setActiveForm }) {
   const [email, setEmail] = useState('')
@@ -131,6 +132,7 @@ export function SignOut({ setActiveForm }) {
         ...prevState,
         confirmPassword: 'A confirmação de senha não confere.',
       }))
+      haveError = true
     }
 
     return haveError
@@ -141,11 +143,9 @@ export function SignOut({ setActiveForm }) {
 
     if (!validate()) {
       async function createUser() {
-        const response = await axios.get(
-          `http://localhost:3000/user?email=${email}`,
-        )
+        const existUser = await verifyExistUser(email)
 
-        if (response.data.length) {
+        if (existUser) {
           toast.error('Esse e-mail já está vinculado a uma conta.')
         } else {
           const age =

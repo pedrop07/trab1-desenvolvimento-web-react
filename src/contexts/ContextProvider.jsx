@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { createContext, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
 
 export const Context = createContext({})
 
@@ -15,7 +16,7 @@ export function ContextProvider({ children }) {
         )
         setSpotifyPlaylist(response.data)
       } catch (error) {
-        console.log(error)
+        toast.error('Servidor offline')
       }
     }
 
@@ -27,8 +28,6 @@ export function ContextProvider({ children }) {
       setLoggedUser({ ...user, playlists })
     }
   }, [])
-
-  console.log(loggedUser)
 
   return (
     <Context.Provider

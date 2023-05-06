@@ -165,6 +165,14 @@
       "password": "123",
       "age": 23,
       "id": 1
+    },
+    {
+      "name": "pedro",
+      "email": "pedro@gmail.com",
+      "date_of_birth": "2000-10-10T02:00:00.000Z",
+      "password": "123",
+      "age": 23,
+      "id": 2
     }
   ],
   "playlists": [

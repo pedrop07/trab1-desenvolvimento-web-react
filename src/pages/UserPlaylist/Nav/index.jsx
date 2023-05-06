@@ -45,7 +45,7 @@ export function Nav({ playlist }) {
           <NavLink to={'/'}>
             <House size={30} /> Início
           </NavLink>
-          <NavLink to={'/'}>
+          <NavLink to={'/faq'}>
             <Question size={30} /> FAQ
           </NavLink>
           <NavLink to={'/minha-conta'}>

@@ -1,9 +1,5 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import {
-  Modal,
-  ModalContainer,
-  ModalContent,
-  ModalHeader,
   SaveButton,
   UserDetail,
   UserEdit,
@@ -13,10 +9,12 @@ import {
   UserProfilePicture,
 } from './styles'
 import { Context } from '../../../../contexts/ContextProvider'
-import { Cake, EnvelopeSimple, Gear, Pencil, User, X } from 'phosphor-react'
+import { Cake, EnvelopeSimple, Pencil, User } from 'phosphor-react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
-import { UserPlaylists } from '../UserPlaylists'
+import { Playlists } from '../Playlists'
+import { verifyExistUser } from '../../../../util/verifyExistUser'
+import { Modal } from '../../../../components/Modal'
 
 export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
   const { loggedUser, setLoggedUser } = useContext(Context)
@@ -48,10 +46,20 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
       haveError = true
     }
 
+    if (editedEmail === loggedUser.email) {
+      toast.error('E-mail deve ser diferente.')
+      haveError = true
+    }
+
     const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/
 
     if (!regexName.test(editedName) && editedName) {
       toast.error('Preencha o campo de nome apenas com LETRAS.')
+      haveError = true
+    }
+
+    if (editedName === loggedUser.name) {
+      toast.error('Nome deve ser diferente.')
       haveError = true
     }
 
@@ -63,28 +71,41 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
 
     if (!validate()) {
       async function editUser() {
-        try {
-          await axios.patch(`http://localhost:3000/user/${loggedUser.id}`, {
-            name: editedName,
-            email: editedEmail,
-          })
+        const existUser = await verifyExistUser(editedEmail)
 
-          const editedUser = {
-            ...loggedUser,
-            name: editedName,
-            email: editedEmail,
+        if (existUser) {
+          toast.error('Esse e-mail já está vinculado a uma conta.')
+        } else {
+          try {
+            await axios.patch(`http://localhost:3000/user/${loggedUser.id}`, {
+              name: editedName,
+              email: editedEmail,
+            })
+
+            const editedUser = {
+              ...loggedUser,
+              name: editedName,
+              email: editedEmail,
+            }
+            localStorage.setItem('user', JSON.stringify(editedUser))
+            setLoggedUser(editedUser)
+            setIsModalOpen(false)
+          } catch (error) {
+            toast.error('Problemas no servidor, tente novamente.')
           }
-          localStorage.setItem('user', JSON.stringify(editedUser))
-          setLoggedUser(editedUser)
-          setIsModalOpen(false)
-        } catch (error) {
-          toast.error('Problemas no servidor, tente novamente.')
         }
       }
 
       editUser()
     }
   }
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      setEditedName(loggedUser.name)
+      setEditedEmail(loggedUser.email)
+    }
+  }, [isModalOpen])
 
   return (
     <UserProfileContainer>
@@ -109,43 +130,31 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
         </UserEdit>
       </UserInfo>
 
-      <UserPlaylists
+      <Playlists
         openPlaylistModal={openPlaylistModal}
         setOpenPlaylistModal={setOpenPlaylistModal}
       />
-      {isModalOpen && (
-        <ModalContainer>
-          <Modal>
-            <ModalHeader>
-              Detalhes do perfil
-              <button onClick={() => setIsModalOpen(false)}>
-                <X size={25} />
-              </button>
-            </ModalHeader>
-            <ModalContent>
-              <form onSubmit={handleEditUser}>
-                <label htmlFor="name">Nome</label>
-                <input
-                  type="text"
-                  id="name"
-                  value={editedName}
-                  onChange={(event) => setEditedName(event.target.value)}
-                />
-                <label htmlFor="email">E-mail</label>
-                <input
-                  type="text"
-                  id="email"
-                  value={editedEmail}
-                  onChange={(event) => setEditedEmail(event.target.value)}
-                />
-                <SaveButton>
-                  <button>Salvar</button>
-                </SaveButton>
-              </form>
-            </ModalContent>
-          </Modal>
-        </ModalContainer>
-      )}
+      <Modal open={isModalOpen} setOpen={setIsModalOpen}>
+        <form onSubmit={handleEditUser}>
+          <label htmlFor="name">Nome</label>
+          <input
+            type="text"
+            id="name"
+            value={editedName}
+            onChange={(event) => setEditedName(event.target.value)}
+          />
+          <label htmlFor="email">E-mail</label>
+          <input
+            type="text"
+            id="email"
+            value={editedEmail}
+            onChange={(event) => setEditedEmail(event.target.value)}
+          />
+          <SaveButton>
+            <button>Salvar</button>
+          </SaveButton>
+        </form>
+      </Modal>
     </UserProfileContainer>
   )
 }
