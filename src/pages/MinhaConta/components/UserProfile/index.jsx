@@ -134,7 +134,11 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
         openPlaylistModal={openPlaylistModal}
         setOpenPlaylistModal={setOpenPlaylistModal}
       />
-      <Modal open={isModalOpen} setOpen={setIsModalOpen}>
+      <Modal
+        title={'Editar perfil'}
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
+      >
         <form onSubmit={handleEditUser}>
           <label htmlFor="name">Nome</label>
           <input

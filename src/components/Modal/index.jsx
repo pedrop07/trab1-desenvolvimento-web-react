@@ -7,14 +7,14 @@ import {
   StyledModal,
 } from './styles'
 
-export function Modal({ children, open, setOpen }) {
+export function Modal({ children, open, setOpen, title }) {
   return (
     <>
       {open && (
         <ModalContainer>
           <StyledModal>
             <ModalHeader>
-              Detalhes do perfsil
+              {title}
               <CloseModalButton onClick={() => setOpen(false)}>
                 <X size={25} />
               </CloseModalButton>

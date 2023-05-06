@@ -184,13 +184,6 @@
       "id": 1
     },
     {
-      "title": "2",
-      "musics": [],
-      "user_id": 1,
-      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
-      "id": 2
-    },
-    {
       "title": "3",
       "musics": [],
       "user_id": 1,
@@ -217,6 +210,29 @@
       "user_id": 1,
       "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
       "id": 6
+    }
+  ],
+  "musics": [
+    {
+      "id": 1,
+      "name": "Piano 1",
+      "author": "Piano",
+      "duration": "2:34",
+      "path": "/src/assets/audio/piano_1.mp3"
+    },
+    {
+      "id": 2,
+      "name": "Piano 2",
+      "author": "Piano",
+      "duration": "2:34",
+      "path": "/src/assets/audio/piano_2.mp3"
+    },
+    {
+      "id": 3,
+      "name": "Piano 3",
+      "author": "Piano",
+      "duration": "2:34",
+      "path": "/src/assets/audio/piano_3.mp3"
     }
   ]
 }

@@ -15,8 +15,6 @@ button{
     width: 0px;
 }
 
-
-
 .nav-bar .navbar-nav .nav-item a:hover, .root-list-item:hover{
     opacity: 1;
 

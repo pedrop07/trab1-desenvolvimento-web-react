@@ -6,6 +6,7 @@ import { SpotifyPlaylist } from './pages/SpotifyPlaylist'
 import { Cadastro } from './pages/Cadastro'
 import { MinhaConta } from './pages/MinhaConta'
 import { UserPlaylist } from './pages/UserPlaylist'
+import { Search } from './pages/Search'
 
 export function Router() {
   return (
@@ -17,6 +18,7 @@ export function Router() {
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/minha-conta" element={<MinhaConta />} />
         <Route path="/user-playlist/:id" element={<UserPlaylist />} />
+        <Route path="/search" element={<Search />} />
       </Route>
     </Routes>
   )

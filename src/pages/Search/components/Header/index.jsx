@@ -1,16 +1,18 @@
 import { UserCircle } from 'phosphor-react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import {
   LogoutButton,
+  SearchInputContainer,
   StyledHeader,
   StyledLink,
   UserContent,
   UserProfile,
 } from './styles'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Context } from '../../../../contexts/ContextProvider'
 
-export function Header() {
+export function Header({ setSearchText }) {
+  const navigate = useNavigate()
   const { loggedUser, setLoggedUser } = useContext(Context)
 
   function handleLogout() {
@@ -18,6 +20,8 @@ export function Header() {
     localStorage.removeItem('user')
     localStorage.removeItem('playlists')
   }
+
+  function handleSearch() {}
 
   return (
     <div className="top-bar">
@@ -37,6 +41,15 @@ export function Header() {
             </UserContent>
           </UserProfile>
         )}
+
+        <SearchInputContainer>
+          <input
+            onChange={(event) => setSearchText(event.target.value)}
+            type="text"
+            placeholder="O que voce quer ouvir ?"
+          />
+          <button>Pesquisar</button>
+        </SearchInputContainer>
 
         <NavLink to="/faq">
           <button className="btn-upgrade">FAQ</button>

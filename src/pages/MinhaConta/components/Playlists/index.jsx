@@ -97,7 +97,11 @@ export function Playlists({ setOpenPlaylistModal, openPlaylistModal }) {
       ) : (
         renderPlaylists()
       )}
-      <Modal open={openPlaylistModal} setOpen={setOpenPlaylistModal}>
+      <Modal
+        title="Criar playlist"
+        open={openPlaylistModal}
+        setOpen={setOpenPlaylistModal}
+      >
         <form onSubmit={handleAddPlaylist}>
           <label htmlFor="name">Nome</label>
           <input

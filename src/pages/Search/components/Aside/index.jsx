@@ -18,10 +18,10 @@ export function Aside() {
         </li>
 
         <li className="nav-item ">
-          <NavLink to="/search" className="nav-link d-flex align-items-center">
+          <a href="" className="nav-link d-flex align-items-center">
             <i className="fa-solid fa-magnifying-glass"></i>
             <span>Buscar</span>
-          </NavLink>
+          </a>
         </li>
 
         <li className="nav-item">
