@@ -1,5 +1,5 @@
-import { UserCircle } from 'phosphor-react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { MagnifyingGlass, UserCircle } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 import {
   LogoutButton,
   SearchInputContainer,
@@ -10,10 +10,13 @@ import {
 } from './styles'
 import { useContext, useEffect, useState } from 'react'
 import { Context } from '../../../../contexts/ContextProvider'
+import { toast } from 'react-hot-toast'
+import axios from 'axios'
 
-export function Header({ setSearchText }) {
-  const navigate = useNavigate()
-  const { loggedUser, setLoggedUser } = useContext(Context)
+export function Header() {
+  const { loggedUser, setLoggedUser, setMusics } = useContext(Context)
+
+  const [searchText, setSearchText] = useState('')
 
   function handleLogout() {
     setLoggedUser()
@@ -21,7 +24,21 @@ export function Header({ setSearchText }) {
     localStorage.removeItem('playlists')
   }
 
-  function handleSearch() {}
+  async function handleSearch(event) {
+    event.preventDefault()
+
+    if (searchText) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/musics?q=${searchText}`,
+        )
+
+        setMusics(response.data)
+      } catch {
+        toast.error('Servidor offline.')
+      }
+    }
+  }
 
   return (
     <div className="top-bar">
@@ -43,12 +60,16 @@ export function Header({ setSearchText }) {
         )}
 
         <SearchInputContainer>
-          <input
-            onChange={(event) => setSearchText(event.target.value)}
-            type="text"
-            placeholder="O que voce quer ouvir ?"
-          />
-          <button>Pesquisar</button>
+          <form onSubmit={handleSearch}>
+            <input
+              onChange={(event) => setSearchText(event.target.value)}
+              type="text"
+              placeholder="O que voce quer ouvir ?"
+            />
+            <button title="Pesquisar">
+              <MagnifyingGlass size={20} weight="light" />
+            </button>
+          </form>
         </SearchInputContainer>
 
         <NavLink to="/faq">

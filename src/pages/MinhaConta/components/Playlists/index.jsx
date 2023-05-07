@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import {
   CreatePlaylistButton,
   EmptyPlaylists,
+  FlexContainer,
   PlaylistCard,
   PlaylistsContainer,
   SaveButton,
@@ -63,18 +64,21 @@ export function Playlists({ setOpenPlaylistModal, openPlaylistModal }) {
 
   function renderPlaylists() {
     return (
-      <PlaylistsContainer>
-        {loggedUser.playlists.map(({ id, title, img }) => {
-          return (
-            <NavLink key={id} to={`/user-playlist/${id}`}>
-              <PlaylistCard>
-                <img src={img} alt="exemplo" />
-                <h5>{title}</h5>
-              </PlaylistCard>
-            </NavLink>
-          )
-        })}
-      </PlaylistsContainer>
+      <FlexContainer>
+        <h1>Suas Playlists</h1>
+        <PlaylistsContainer>
+          {loggedUser.playlists.map(({ id, title, img }) => {
+            return (
+              <NavLink key={id} to={`/user-playlist/${id}`}>
+                <PlaylistCard>
+                  <img src={img} alt="exemplo" />
+                  <h5>{title}</h5>
+                </PlaylistCard>
+              </NavLink>
+            )
+          })}
+        </PlaylistsContainer>
+      </FlexContainer>
     )
   }
 

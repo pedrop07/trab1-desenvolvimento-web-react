@@ -1,15 +1,14 @@
 import { Aside } from '../Home/components/Aside'
 import { Footer } from '../Home/components/Footer'
-import { MainContent } from '../Home/components/MainContent'
 import { Header } from './components/Header'
-import './styles.css'
+import { MusicsContainer } from './components/MusicsContainer'
 
 export function Search() {
   return (
     <div className="root">
       <Aside />
       <Header />
-      <MainContent />
+      <MusicsContainer />
       <Footer />
     </div>
   )

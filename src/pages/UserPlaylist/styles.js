@@ -9,3 +9,12 @@ export const UserPlaylistContainer = styled.div`
   grid-template-columns: auto 1fr;
   gap: 0.5rem;
 `
+
+export const RightContainer = styled.div`
+  border-radius: 8px;
+  width: 100%;
+  background-color: #121212;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+`

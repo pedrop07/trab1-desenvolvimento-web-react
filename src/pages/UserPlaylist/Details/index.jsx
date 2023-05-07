@@ -1,23 +1,18 @@
 import { useContext } from 'react'
-import { DetailsContainer, PlaylistDetails, PlaylistTitle } from './styles'
+import { PlaylistDetails, PlaylistTitle } from './styles'
 import { Context } from '../../../contexts/ContextProvider'
-import { Musics } from '../Musics'
 
-export function Details({ playlist }) {
+export function Details({ selectedPlaylist }) {
   const { loggedUser } = useContext(Context)
 
   return (
-    <DetailsContainer>
-      <PlaylistDetails>
-        <img src={playlist?.img} alt="imagem de exemplo" />
-        <PlaylistTitle>
-          <span>PLAYLIST</span>
-          {playlist?.title}
-          <span>Autor: {loggedUser?.name}</span>
-        </PlaylistTitle>
-      </PlaylistDetails>
-
-      <Musics playlist={playlist} />
-    </DetailsContainer>
+    <PlaylistDetails>
+      <img src={selectedPlaylist?.img} alt="imagem de exemplo" />
+      <PlaylistTitle>
+        <span>Playlist</span>
+        {selectedPlaylist?.title}
+        <span>{loggedUser?.name}</span>
+      </PlaylistTitle>
+    </PlaylistDetails>
   )
 }

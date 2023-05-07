@@ -10,7 +10,7 @@ export function Aside() {
       </div>
 
       <ul className="navbar-nav">
-        <li className="nav-item active">
+        <li className="nav-item">
           <NavLink to="/" className="nav-link d-flex align-items-center">
             <i className="fa-solid fa-house"></i>
             <span>Início</span>
@@ -32,7 +32,7 @@ export function Aside() {
         </li>
       </ul>
 
-      <div className="root-list d-flex flex-column mt-4">
+      {/* <div className="root-list d-flex flex-column mt-4">
         <div className="root-list-header"></div>
         <div className="root-list-body">
           <div className="root-list-item d-flex">
@@ -41,15 +41,8 @@ export function Aside() {
             </div>
             <span>Criar Playlist</span>
           </div>
-
-          <div className="root-list-item d-flex">
-            <div className="root-list-icon heart d-flex justify-content-center align-items-center">
-              <i className="fa-solid fa-heart"></i>
-            </div>
-            <span>Músicas Curtidas</span>
-          </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="root-list-info d-flex flex-column">
         <div className="root-list-links">

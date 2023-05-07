@@ -87,7 +87,7 @@ button{
     opacity: .6;
     font-weight: 500;
 }
-.nav-bar .navbar-nav .nav-item.active a{
+.nav-bar .navbar-nav .nav-item a.active{
     background-color: #282828;
     opacity: 1;
 }

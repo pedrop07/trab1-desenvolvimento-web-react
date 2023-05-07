@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { NavContainer, StyledNavigation } from './styles'
-import { House, PlusCircle, Question } from 'phosphor-react'
+import { House, MagnifyingGlass, PlusCircle, Question } from 'phosphor-react'
 
 export function Nav({ setOpenPlaylistModal }) {
   return (
@@ -12,6 +12,9 @@ export function Nav({ setOpenPlaylistModal }) {
           </NavLink>
           <NavLink to={'/faq'}>
             <Question size={30} /> FAQ
+          </NavLink>
+          <NavLink to={'/search'}>
+            <MagnifyingGlass size={30} /> Buscar
           </NavLink>
           <button onClick={() => setOpenPlaylistModal(true)}>
             <PlusCircle size={30} /> Criar playlist

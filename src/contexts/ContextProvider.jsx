@@ -6,15 +6,19 @@ export const Context = createContext({})
 
 export function ContextProvider({ children }) {
   const [spotifyPlaylist, setSpotifyPlaylist] = useState([])
+  const [musics, setMusics] = useState([])
   const [loggedUser, setLoggedUser] = useState()
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
+        const spotifyPlaylistResponse = await axios.get(
           'http://localhost:3000/spotify_playlists',
         )
-        setSpotifyPlaylist(response.data)
+        setSpotifyPlaylist(spotifyPlaylistResponse.data)
+
+        const musicsResponse = await axios.get('http://localhost:3000/musics')
+        setMusics(musicsResponse.data)
       } catch (error) {
         toast.error('Servidor offline')
       }
@@ -35,6 +39,8 @@ export function ContextProvider({ children }) {
         spotifyPlaylist,
         setLoggedUser,
         loggedUser,
+        musics,
+        setMusics,
       }}
     >
       {children}

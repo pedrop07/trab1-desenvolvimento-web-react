@@ -1,14 +1,5 @@
 import styled from 'styled-components'
 
-export const DetailsContainer = styled.div`
-  border-radius: 8px;
-  width: 100%;
-  background-color: #121212;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-`
-
 export const PlaylistDetails = styled.div`
   color: #fff;
   height: 30vh;
@@ -36,5 +27,6 @@ export const PlaylistTitle = styled.div`
 
   span {
     font-size: 14px;
+    text-transform: capitalize;
   }
 `

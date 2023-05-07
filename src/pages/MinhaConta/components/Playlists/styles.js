@@ -33,11 +33,21 @@ export const CreatePlaylistButton = styled.button`
   }
 `
 
+export const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+
+  h1 {
+    color: #fff;
+  }
+`
+
 export const PlaylistsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem;
 `
 
 export const PlaylistCard = styled.div`

@@ -88,38 +88,43 @@ export const LogoutButton = styled.button`
 `
 
 export const SearchInputContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
+  form {
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
 
   button {
-    all: unset;
     cursor: pointer;
-    background-color: #fff;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 64px;
+    background-color: #3c3c3c;
+    color: #fff;
     padding: 0.35rem 0.5rem;
-    border-radius: 500px;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
 
     transition: all 0.2s ease;
 
     &:hover {
-      background: #dddddd;
+      background: #303030;
     }
   }
 
   input {
+    width: 100%;
+    height: 100%;
     background-color: #242424;
     color: #fff;
-    height: 42px;
-    padding: 6px 36px;
-
-    border: 0;
-    border-radius: 500px;
-    text-overflow: ellipsis;
-    width: 100%;
-
-    &:focus {
-      box-shadow: 0 0 0 2px #fff;
-      outline: none;
-    }
+    padding: 6px 25px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
   }
 `

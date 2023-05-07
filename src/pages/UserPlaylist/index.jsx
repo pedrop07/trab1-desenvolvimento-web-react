@@ -3,13 +3,13 @@ import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useParams } from 'react-router-dom'
 import { Nav } from './Nav'
-import { UserPlaylistContainer } from './styles'
+import { RightContainer, UserPlaylistContainer } from './styles'
 import { Details } from './Details'
 import { Musics } from './Musics'
 
 export function UserPlaylist() {
   const { id } = useParams()
-  const [playlist, setPlaylist] = useState()
+  const [selectedPlaylist, setSelectedPlaylist] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -17,7 +17,7 @@ export function UserPlaylist() {
         const response = await axios.get(
           `http://localhost:3000/playlists/${id}`,
         )
-        setPlaylist(response.data)
+        setSelectedPlaylist(response.data)
       } catch {
         toast.error('Erro no servidor, tente novamente')
       }
@@ -28,8 +28,15 @@ export function UserPlaylist() {
 
   return (
     <UserPlaylistContainer>
-      <Nav playlist={playlist} />
-      <Details playlist={playlist} />
+      <Nav selectedPlaylist={selectedPlaylist} />
+
+      <RightContainer>
+        <Details selectedPlaylist={selectedPlaylist} />
+        <Musics
+          selectedPlaylist={selectedPlaylist}
+          setSelectedPlaylist={setSelectedPlaylist}
+        />
+      </RightContainer>
     </UserPlaylistContainer>
   )
 }

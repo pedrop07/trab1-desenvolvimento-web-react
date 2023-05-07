@@ -178,28 +178,95 @@
   "playlists": [
     {
       "title": "teste",
-      "musics": [],
+      "musics": [
+        {
+          "id": 3,
+          "name": "Piano 3",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "3:18",
+          "path": "/src/assets/audio/piano_3.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        }
+      ],
       "user_id": 1,
       "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
       "id": 1
     },
     {
       "title": "3",
-      "musics": [],
+      "musics": [
+        {
+          "id": 2,
+          "name": "Piano 2",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "2:40",
+          "path": "/src/assets/audio/piano_2.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        },
+        {
+          "id": 1,
+          "name": "Piano 1",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "1:36",
+          "path": "/src/assets/audio/piano_1.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        },
+        {
+          "id": 2,
+          "name": "Piano 2",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "2:40",
+          "path": "/src/assets/audio/piano_2.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        }
+      ],
       "user_id": 1,
       "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
       "id": 3
     },
     {
       "title": "4",
-      "musics": [],
+      "musics": [
+        {
+          "id": 3,
+          "name": "Piano 3",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "3:18",
+          "path": "/src/assets/audio/piano_3.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        }
+      ],
       "user_id": 1,
       "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
       "id": 4
     },
     {
       "title": "5",
-      "musics": [],
+      "musics": [
+        {
+          "id": 3,
+          "name": "Piano 3",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "3:18",
+          "path": "/src/assets/audio/piano_3.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        },
+        {
+          "id": 2,
+          "name": "Piano 2",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "2:40",
+          "path": "/src/assets/audio/piano_2.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        }
+      ],
       "user_id": 1,
       "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9",
       "id": 5
@@ -216,23 +283,29 @@
     {
       "id": 1,
       "name": "Piano 1",
+      "album": "Músicas de Piano",
       "author": "Piano",
-      "duration": "2:34",
-      "path": "/src/assets/audio/piano_1.mp3"
+      "duration": "1:36",
+      "path": "/src/assets/audio/piano_1.mp3",
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
     },
     {
       "id": 2,
       "name": "Piano 2",
+      "album": "Músicas de Piano",
       "author": "Piano",
-      "duration": "2:34",
-      "path": "/src/assets/audio/piano_2.mp3"
+      "duration": "2:40",
+      "path": "/src/assets/audio/piano_2.mp3",
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
     },
     {
       "id": 3,
       "name": "Piano 3",
+      "album": "Músicas de Piano",
       "author": "Piano",
-      "duration": "2:34",
-      "path": "/src/assets/audio/piano_3.mp3"
+      "duration": "3:18",
+      "path": "/src/assets/audio/piano_3.mp3",
+      "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
     }
   ]
 }

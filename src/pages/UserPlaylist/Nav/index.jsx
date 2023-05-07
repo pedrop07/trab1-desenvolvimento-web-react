@@ -15,16 +15,18 @@ import axios from 'axios'
 import { useContext } from 'react'
 import { Context } from '../../../contexts/ContextProvider'
 
-export function Nav({ playlist }) {
+export function Nav({ selectedPlaylist }) {
   const navigate = useNavigate()
   const { loggedUser, setLoggedUser } = useContext(Context)
 
   async function handleDeletePlaylist() {
     try {
-      await axios.delete(`http://localhost:3000/playlists/${playlist?.id}`)
+      await axios.delete(
+        `http://localhost:3000/playlists/${selectedPlaylist?.id}`,
+      )
 
       const updatedPlaylists = loggedUser.playlists.filter(
-        ({ id }) => id !== playlist?.id,
+        ({ id }) => id !== selectedPlaylist?.id,
       )
 
       localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
@@ -52,8 +54,8 @@ export function Nav({ playlist }) {
             <UserCircle size={30} /> Minha conta
           </NavLink>
           <Popconfirm
-            title={`Apagar playlist ${playlist?.title}`}
-            description={`Tem certeza que deseja apagar a playlist ${playlist?.title}?`}
+            title={`Apagar playlist ${selectedPlaylist?.title}`}
+            description={`Tem certeza que deseja apagar a playlist ${selectedPlaylist?.title}?`}
             okText="Confirmar"
             cancelText="Cancelar"
             onConfirm={handleDeletePlaylist}
