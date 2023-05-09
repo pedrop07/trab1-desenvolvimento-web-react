@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(uuid())
+  name       String
+  email      String     @unique
+  password   String
+  age        Int
+  created_at DateTime   @default(now())
+  playlists  Playlist[]
+
+  @@map("users")
+}
+
+model Song {
+  id         String    @id @default(uuid())
+  name       String
+  album      String
+  author     String
+  duration   Int
+  path       String
+  img        String    @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
+  Playlist   Playlist? @relation(fields: [playlistId], references: [id])
+  playlistId String?
+
+  @@map("songs")
+}
+
+model Playlist {
+  id               String  @id @default(uuid())
+  name             String
+  img              String  @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
+  songs            Song[]
+  User             User?   @relation(fields: [user_id], references: [id])
+  user_id          String?
+  spotify_playlist Boolean @default(false)
+
+  @@map("playlists")
+}

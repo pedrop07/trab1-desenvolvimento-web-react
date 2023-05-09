@@ -187,6 +187,15 @@
           "duration": "3:18",
           "path": "/src/assets/audio/piano_3.mp3",
           "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
+        },
+        {
+          "id": 2,
+          "name": "Piano 2",
+          "album": "Músicas de Piano",
+          "author": "Piano",
+          "duration": "2:40",
+          "path": "/src/assets/audio/piano_2.mp3",
+          "img": "https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9"
         }
       ],
       "user_id": 1,
