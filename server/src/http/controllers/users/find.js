@@ -1,18 +1,20 @@
 import { prisma } from '../../../lib/prisma.js'
 
-export async function deletePlaylist(request, response) {
+export async function findUser(request, response) {
   const { id } = request.params
 
   try {
-    const deletedPlaylist = await prisma.playlist.delete({
+    const user = await prisma.user.findUnique({
       where: {
         id,
       },
+      include: {
+        playlists: true,
+      },
     })
 
-    return response.status(200).send(deletedPlaylist)
+    return response.status(200).send(user)
   } catch (error) {
-    console.log(error)
     return response.status(500).send({ message: 'Erro no servidor' })
   }
 }

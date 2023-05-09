@@ -1,13 +1,13 @@
 import { prisma } from '../../../lib/prisma.js'
 
 export async function addMusicToPlaylist(request, response) {
-  const { id } = request.params
+  const { playlistId } = request.params
   const music = request.body
 
   try {
     const updatePlaylist = await prisma.playlist.update({
       where: {
-        id,
+        id: playlistId,
       },
       data: {
         musics: {
@@ -18,7 +18,7 @@ export async function addMusicToPlaylist(request, response) {
       },
     })
 
-    return response.status(200).send(updatePlaylist)
+    return response.status(201).send(updatePlaylist)
   } catch (error) {
     console.log(error)
     return response.status(500).send({ message: 'Erro no servidor' })

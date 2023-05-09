@@ -2,13 +2,13 @@ import { prisma } from '../../../lib/prisma.js'
 
 export async function createPlaylist(request, response) {
   const { name } = request.body
-  const { id } = request.params
+  const { userId } = request.params
 
   try {
     const playlist = await prisma.playlist.create({
       data: {
         name,
-        user_id: id,
+        user_id: userId,
       },
     })
 
