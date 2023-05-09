@@ -19,28 +19,36 @@ model User {
   @@map("users")
 }
 
-model Song {
-  id         String    @id @default(uuid())
-  name       String
-  album      String
-  author     String
-  duration   Int
-  path       String
-  img        String    @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
-  Playlist   Playlist? @relation(fields: [playlistId], references: [id])
-  playlistId String?
+model Music {
+  id                String            @id @default(uuid())
+  name              String
+  album             String
+  author            String
+  duration          String
+  path              String
+  img               String            @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
+  playlists         Playlist[]
+  spotify_playlists SpotifyPlaylist[]
 
-  @@map("songs")
+  @@map("musics")
 }
 
 model Playlist {
-  id               String  @id @default(uuid())
-  name             String
-  img              String  @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
-  songs            Song[]
-  User             User?   @relation(fields: [user_id], references: [id])
-  user_id          String?
-  spotify_playlist Boolean @default(false)
+  id      String  @id @default(uuid())
+  name    String
+  img     String  @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
+  musics  Music[]
+  User    User    @relation(fields: [user_id], references: [id])
+  user_id String
 
   @@map("playlists")
+}
+
+model SpotifyPlaylist {
+  id     String  @id @default(uuid())
+  name   String
+  img    String  @default("https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9")
+  musics Music[]
+
+  @@map("spotify_playlists")
 }

@@ -1,13 +1,13 @@
 import { prisma } from '../../../lib/prisma.js'
 
-export async function listUsers(request, response) {
+export async function listPlaylists(request, response) {
   try {
-    const users = await prisma.user.findMany({
+    const playlists = await prisma.playlist.findMany({
       include: {
-        playlists: true,
+        musics: true,
       },
     })
-    return response.status(200).send(users)
+    return response.status(200).send(playlists)
   } catch (error) {
     return response.status(500).send({ message: 'Erro no servidor' })
   }
