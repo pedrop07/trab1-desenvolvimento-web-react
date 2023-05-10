@@ -19,9 +19,8 @@ export function Header() {
   const [searchText, setSearchText] = useState('')
 
   function handleLogout() {
-    setLoggedUser()
     localStorage.removeItem('user')
-    localStorage.removeItem('playlists')
+    setLoggedUser()
   }
 
   async function handleSearch(event) {
@@ -30,7 +29,7 @@ export function Header() {
     if (searchText) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/musics?q=${searchText}`,
+          `http://localhost:3000/musics/search?name=${searchText}`,
         )
 
         setMusics(response.data)

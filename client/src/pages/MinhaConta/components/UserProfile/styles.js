@@ -73,14 +73,18 @@ export const UserName = styled.div`
 `
 
 export const UserDetail = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 0.25rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: #fff;
+
   svg {
     margin-right: 1rem;
     color: #7f7f7f;
   }
-
-  font-size: 1.35rem;
-  font-weight: 500;
-  color: #fff;
 `
 
 export const SaveButton = styled.div`

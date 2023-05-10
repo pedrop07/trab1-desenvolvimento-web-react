@@ -37,19 +37,17 @@ export function Playlists({ setOpenPlaylistModal, openPlaylistModal }) {
       async function createPlaylist() {
         try {
           const response = await axios.post(`http://localhost:3000/playlists`, {
-            title: playlistName,
-            musics: [],
+            name: playlistName,
             user_id: loggedUser.id,
-            img: 'https://i.scdn.co/image/ab67706f00000002e138087c0972c43645489dd9',
           })
 
-          const updatedPlaylists = [...loggedUser.playlists, response.data]
-
-          localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-          setLoggedUser({
+          const updatedUser = {
             ...loggedUser,
-            playlists: updatedPlaylists,
-          })
+            playlists: [...loggedUser.playlists, response.data],
+          }
+
+          localStorage.setItem('user', JSON.stringify(updatedUser))
+          setLoggedUser(updatedUser)
           setOpenPlaylistModal(false)
           setPlaylistName('')
         } catch (error) {
@@ -67,12 +65,12 @@ export function Playlists({ setOpenPlaylistModal, openPlaylistModal }) {
       <FlexContainer>
         <h1>Suas Playlists</h1>
         <PlaylistsContainer>
-          {loggedUser.playlists.map(({ id, title, img }) => {
+          {loggedUser.playlists.map(({ id, name, img }) => {
             return (
               <NavLink key={id} to={`/user-playlist/${id}`}>
                 <PlaylistCard>
                   <img src={img} alt="exemplo" />
-                  <h5>{title}</h5>
+                  <h5>{name}</h5>
                 </PlaylistCard>
               </NavLink>
             )

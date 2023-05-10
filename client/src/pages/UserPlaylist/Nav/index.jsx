@@ -29,11 +29,13 @@ export function Nav({ selectedPlaylist }) {
         ({ id }) => id !== selectedPlaylist?.id,
       )
 
-      localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-      setLoggedUser({
+      const updatedUser = {
         ...loggedUser,
         playlists: updatedPlaylists,
-      })
+      }
+
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+      setLoggedUser(updatedUser)
       navigate('/minha-conta')
     } catch {
       toast.error('Erro no servidor, tente novamente')

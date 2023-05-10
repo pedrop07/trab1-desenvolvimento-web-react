@@ -65,10 +65,10 @@ export function SignIn() {
         )
 
         if (response.data.length === 0) {
-          setError({
-            email: 'E-mail ou senha incorretos',
-            password: 'E-mail ou senha incorretos',
-          })
+          setError((prevState) => ({
+            ...prevState,
+            email: 'E-mail não cadastrado',
+          }))
         } else {
           const user = response.data[0]
           if (user.password !== password) {
@@ -77,13 +77,8 @@ export function SignIn() {
               password: 'Senha incorreta.',
             }))
           } else {
-            const playlists = await axios.get(
-              `http://localhost:3000/playlists?user_id=${user.id}`,
-            )
-
-            localStorage.setItem('playlists', JSON.stringify(playlists.data))
             localStorage.setItem('user', JSON.stringify(user))
-            setLoggedUser({ ...user, playlists: playlists.data })
+            setLoggedUser(user)
             toast.success('Login realizado')
             navigate('/')
           }

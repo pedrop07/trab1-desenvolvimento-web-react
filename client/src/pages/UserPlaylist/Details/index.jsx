@@ -10,8 +10,8 @@ export function Details({ selectedPlaylist }) {
       <img src={selectedPlaylist?.img} alt="imagem de exemplo" />
       <PlaylistTitle>
         <span>Playlist</span>
-        {selectedPlaylist?.title}
-        <span>{loggedUser?.name}</span>
+        {selectedPlaylist?.name}
+        <span>Autor: {loggedUser?.name}</span>
       </PlaylistTitle>
     </PlaylistDetails>
   )

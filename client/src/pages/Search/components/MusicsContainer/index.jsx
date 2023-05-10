@@ -19,8 +19,8 @@ export function MusicsContainer() {
     }
   }
 
-  const playlists = loggedUser?.playlists?.map(({ title }) =>
-    getItem(title, title),
+  const playlists = loggedUser?.playlists?.map(({ name }) =>
+    getItem(name, name),
   )
 
   const items = [
@@ -29,19 +29,27 @@ export function MusicsContainer() {
     ]),
   ]
 
-  async function handleAddMusicToPlaylist(playlistTitle, selectedMusic) {
+  async function handleAddMusicToPlaylist(playlistName, selectedMusic) {
     try {
       const selectedPlaylist = loggedUser?.playlists.find(
-        ({ title }) => title === playlistTitle,
+        ({ name }) => name === playlistName,
       )
 
-      const updatedMusics = [...selectedPlaylist.musics, selectedMusic]
+      const response = await axios.post(
+        `http://localhost:3000/playlists/${selectedPlaylist.id}/musics`,
+        {
+          id: selectedMusic.id,
+        },
+      )
+
+      toast.success(
+        `Música ${selectedMusic.name} adicionada à playlist ${selectedPlaylist.name}`,
+      )
 
       const updatedPlaylists = loggedUser?.playlists?.map((playlist) => {
         if (playlist.id === selectedPlaylist.id) {
           return {
-            ...playlist,
-            musics: updatedMusics,
+            ...response.data,
           }
         } else {
           return {
@@ -50,22 +58,13 @@ export function MusicsContainer() {
         }
       })
 
-      await axios.patch(
-        `http://localhost:3000/playlists/${selectedPlaylist.id}`,
-        {
-          musics: updatedMusics,
-        },
-      )
-
-      toast.success(
-        `Música ${selectedMusic.name} adicionada à playlist ${selectedPlaylist.title}`,
-      )
-
-      localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-      setLoggedUser({
+      const updatedUser = {
         ...loggedUser,
         playlists: updatedPlaylists,
-      })
+      }
+
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+      setLoggedUser(updatedUser)
     } catch (error) {
       console.log(error)
       toast.error('Server offline')

@@ -13,7 +13,6 @@ import { Cake, EnvelopeSimple, Pencil, User } from 'phosphor-react'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { Playlists } from '../Playlists'
-import { verifyExistUser } from '../../../../util/verifyExistUser'
 import { Modal } from '../../../../components/Modal'
 
 export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
@@ -21,10 +20,6 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editedName, setEditedName] = useState(loggedUser.name)
   const [editedEmail, setEditedEmail] = useState(loggedUser.email)
-
-  const cleanDateOfBirth = new Date(
-    loggedUser.date_of_birth,
-  ).toLocaleDateString()
 
   function validate() {
     let haveError = false
@@ -46,20 +41,10 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
       haveError = true
     }
 
-    if (editedEmail === loggedUser.email) {
-      toast.error('E-mail deve ser diferente.')
-      haveError = true
-    }
-
     const regexName = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$/
 
     if (!regexName.test(editedName) && editedName) {
       toast.error('Preencha o campo de nome apenas com LETRAS.')
-      haveError = true
-    }
-
-    if (editedName === loggedUser.name) {
-      toast.error('Nome deve ser diferente.')
       haveError = true
     }
 
@@ -71,32 +56,34 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
 
     if (!validate()) {
       async function editUser() {
-        const existUser = await verifyExistUser(editedEmail)
+        try {
+          await axios.patch(`http://localhost:3000/user/${loggedUser.id}`, {
+            name: editedName,
+            email: editedEmail,
+          })
 
-        if (existUser) {
-          toast.error('Esse e-mail já está vinculado a uma conta.')
-        } else {
-          try {
-            await axios.patch(`http://localhost:3000/user/${loggedUser.id}`, {
-              name: editedName,
-              email: editedEmail,
-            })
-
-            const editedUser = {
-              ...loggedUser,
-              name: editedName,
-              email: editedEmail,
-            }
-            localStorage.setItem('user', JSON.stringify(editedUser))
-            setLoggedUser(editedUser)
-            setIsModalOpen(false)
-          } catch (error) {
+          const editedUser = {
+            ...loggedUser,
+            name: editedName,
+            email: editedEmail,
+          }
+          localStorage.setItem('user', JSON.stringify(editedUser))
+          setLoggedUser(editedUser)
+          setIsModalOpen(false)
+        } catch (error) {
+          if (error.response.status === 409) {
+            toast.error(error.response.data.message)
+          } else {
             toast.error('Problemas no servidor, tente novamente.')
           }
         }
       }
 
-      editUser()
+      if (editedEmail === loggedUser.email && editedName === loggedUser.name) {
+        setIsModalOpen(false)
+      } else {
+        editUser()
+      }
     }
   }
 
@@ -121,7 +108,7 @@ export function UserProfile({ openPlaylistModal, setOpenPlaylistModal }) {
           </UserDetail>
           <UserDetail>
             <Cake size={30} />
-            {cleanDateOfBirth}
+            {loggedUser.age} anos
           </UserDetail>
         </div>
 

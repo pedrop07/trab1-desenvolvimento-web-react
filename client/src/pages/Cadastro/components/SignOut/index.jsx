@@ -10,7 +10,6 @@ import { WarningCircle } from 'phosphor-react'
 import { Error } from '../../styles'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
-import { verifyExistUser } from '../../../../util/verifyExistUser'
 
 export function SignOut({ setActiveForm }) {
   const [email, setEmail] = useState('')
@@ -143,24 +142,25 @@ export function SignOut({ setActiveForm }) {
 
     if (!validate()) {
       async function createUser() {
-        const existUser = await verifyExistUser(email)
+        const age =
+          new Date().getFullYear() - new Date(dateOfBirth).getFullYear()
 
-        if (existUser) {
-          toast.error('Esse e-mail já está vinculado a uma conta.')
-        } else {
-          const age =
-            new Date().getFullYear() - new Date(dateOfBirth).getFullYear()
-
-          axios.post(`http://localhost:3000/user`, {
+        try {
+          const response = await axios.post(`http://localhost:3000/user`, {
             name,
             email,
-            date_of_birth: new Date(dateOfBirth),
             password,
             age,
           })
 
-          toast.success('Usuário criado com sucesso !')
           setActiveForm('signIn')
+          toast.success('Usuário criado com sucesso !')
+        } catch (error) {
+          if (error.response.status === 409) {
+            toast.error(error.response.data.message)
+          } else {
+            toast.error('Problemas no servidor, tente novamente.')
+          }
         }
       }
 

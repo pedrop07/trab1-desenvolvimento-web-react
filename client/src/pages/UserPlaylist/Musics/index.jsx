@@ -27,42 +27,34 @@ export function Musics({ selectedPlaylist, setSelectedPlaylist }) {
 
   async function handleDeleteMusic(deletedMusic) {
     try {
-      const updatedMusics = selectedPlaylist?.musics.filter(
-        (music) => music !== deletedMusic,
+      const response = await axios.delete(
+        `http://localhost:3000/playlists/${selectedPlaylist?.id}/musics/${deletedMusic.id}`,
       )
 
-      await axios.patch(
-        `http://localhost:3000/playlists/${selectedPlaylist?.id}`,
-        {
-          ...selectedPlaylist,
-          musics: updatedMusics,
-        },
-      )
-
-      const updatedPlaylists = loggedUser?.playlists?.map((userPlaylist) => {
-        if (userPlaylist.id === selectedPlaylist.id) {
+      const updatedPlaylists = loggedUser?.playlists?.map((playlist) => {
+        if (playlist.id === selectedPlaylist.id) {
           return {
-            ...userPlaylist,
-            musics: updatedMusics,
+            ...response.data,
           }
         } else {
           return {
-            ...userPlaylist,
+            ...playlist,
           }
         }
       })
 
-      localStorage.setItem('playlists', JSON.stringify(updatedPlaylists))
-
-      setSelectedPlaylist({
-        ...selectedPlaylist,
-        musics: updatedMusics,
-      })
-
-      setLoggedUser({
+      const updatedUser = {
         ...loggedUser,
         playlists: updatedPlaylists,
+      }
+
+      setSelectedPlaylist({
+        ...response.data,
       })
+
+      localStorage.setItem('user', JSON.stringify(updatedUser))
+
+      setLoggedUser(updatedUser)
     } catch (error) {
       console.log(error)
       toast.error('Erro no servidor, tente novamente')
