@@ -2,17 +2,20 @@ import { prisma } from '../../../lib/prisma.js'
 
 export async function addMusicToPlaylist(request, response) {
   const { playlistId } = request.params
-  const music = request.body
+  const { id } = request.body
 
   try {
     const updatePlaylist = await prisma.playlist.update({
       where: {
         id: playlistId,
       },
+      include: {
+        musics: true,
+      },
       data: {
         musics: {
           connect: {
-            id: music.id,
+            id,
           },
         },
       },

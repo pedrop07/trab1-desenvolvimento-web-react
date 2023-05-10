@@ -8,6 +8,9 @@ export async function deleteMusicToPlaylist(request, response) {
       where: {
         id: playlistId,
       },
+      include: {
+        musics: true,
+      },
       data: {
         musics: {
           disconnect: {

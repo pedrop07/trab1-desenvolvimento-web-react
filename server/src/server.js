@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import { registerUser } from './http/controllers/users/register.js'
 import { verifyExistUser } from './http/middlewares/verify-exist-user.js'
 import { listUsers } from './http/controllers/users/list.js'
@@ -15,11 +16,12 @@ import { searchMusics } from './http/controllers/musics/search.js'
 import { listSpotifyPlaylists } from './http/controllers/spotify-playlists/list.js'
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.get('/user', listUsers)
 app.get('/user/:id', findUser)
 app.post('/user', verifyExistUser, registerUser)
-app.patch('/user/:id', updateUser)
+app.patch('/user/:id', verifyExistUser, updateUser)
 
 app.get('/musics', listMusics)
 app.get('/musics/search', searchMusics)
@@ -28,7 +30,7 @@ app.get('/spotify_playlists', listSpotifyPlaylists)
 
 app.get('/playlists', listPlaylists)
 app.get('/playlists/:id', findPlaylist)
-app.post('/playlists/:userId', createPlaylist)
+app.post('/playlists', createPlaylist)
 app.delete('/playlists/:id', deletePlaylist)
 app.post('/playlists/:playlistId/musics', addMusicToPlaylist)
 app.delete('/playlists/:playlistId/musics/:musicId', deleteMusicToPlaylist)

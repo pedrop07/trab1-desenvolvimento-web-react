@@ -8,6 +8,9 @@ export async function deletePlaylist(request, response) {
       where: {
         id,
       },
+      include: {
+        musics: true,
+      },
     })
 
     return response.status(200).send(deletedPlaylist)
