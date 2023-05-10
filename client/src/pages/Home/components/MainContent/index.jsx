@@ -13,20 +13,18 @@ export function MainContent() {
         </div>
       </div>
       <div className="row list mb-5 ms-3">
-        {spotifyPlaylist.map((card) => {
+        {spotifyPlaylist.map(({ id, name, img, description }) => {
           return (
-            <div key={card.id} className="col-12 col-md-3 col-lg-2">
-              <NavLink to={`/playlist-spotify/${card.id}`}>
+            <div key={id} className="col-12 col-md-3 col-lg-2">
+              <NavLink to={`/playlist-spotify/${id}`}>
                 <div className="card">
                   <div className="card-body p-0">
                     <a href="">
-                      <h5 className="card-title">{card.title}</h5>
-                      <p className="card-text">{card.description}</p>
-                      <img
-                        src={card.img}
-                        alt={card.title}
-                        className="card-img"
-                      />
+                      <h5 className="card-title">{name}</h5>
+                      <p className="card-text">
+                        Aproveite esta playlist feita pelo Spotify
+                      </p>
+                      <img src={img} alt={name} className="card-img" />
                     </a>
                   </div>
                 </div>

@@ -56,8 +56,8 @@ export function Nav({ selectedPlaylist }) {
             <UserCircle size={30} /> Minha conta
           </NavLink>
           <Popconfirm
-            title={`Apagar playlist ${selectedPlaylist?.title}`}
-            description={`Tem certeza que deseja apagar a playlist ${selectedPlaylist?.title}?`}
+            title={`Apagar playlist ${selectedPlaylist?.name}`}
+            description={`Tem certeza que deseja apagar a playlist ${selectedPlaylist?.name}?`}
             okText="Confirmar"
             cancelText="Cancelar"
             onConfirm={handleDeletePlaylist}

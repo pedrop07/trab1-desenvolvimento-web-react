@@ -28,7 +28,7 @@ export function Playlist() {
           <div className="ms-4 mb-auto">
             <div className="tittle">
               <h6>Playlist</h6>
-              <h1>{selectedPlaylist?.title}</h1>
+              <h1>{selectedPlaylist?.name}</h1>
             </div>
             <audio id="myAudio">
               <source src={playPiano} type="audio/mpeg" />
@@ -54,9 +54,9 @@ export function Playlist() {
             </tr>
 
             {selectedPlaylist?.musics.map(
-              ({ title, album, duration, path }, index) => {
+              ({ name, album, duration, path }, index) => {
                 function playAudio() {
-                  const x = document.getElementById(title)
+                  const x = document.getElementById(name)
                   x.play()
                   document.getElementById(`btn-play${index}`).style.display =
                     'none'
@@ -65,7 +65,7 @@ export function Playlist() {
                 }
 
                 function pauseAudio() {
-                  const x = document.getElementById(title)
+                  const x = document.getElementById(name)
                   x.pause()
                   document.getElementById(`btn-pause${index}`).style.display =
                     'none'
@@ -75,7 +75,7 @@ export function Playlist() {
 
                 return (
                   <>
-                    <audio id={title}>
+                    <audio id={name}>
                       <source src={path} type="audio/mpeg" />
                       Seu navegador não possui suporte ao elemento audio
                     </audio>
@@ -98,7 +98,7 @@ export function Playlist() {
                           <Pause />
                         </div>
                       </th>
-                      <td>{title}</td>
+                      <td>{name}</td>
                       <td>{album}</td>
                       <td>{duration}</td>
                     </tr>
